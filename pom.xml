@@ -98,13 +98,13 @@ http://3.239.107.219:8081/repository/maven-snapshots/
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://3.239.107.219:8081/repository/maven-releases/ </url>
+	      <url>http://3.239.107.219:8081/repository/tesla-fe-releases/ </url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url> http://3.239.107.219:8081/repository/maven-snapshots/</url>
+	      <url>http://3.239.107.219:8081/repository/tesla-fe-snapshots/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
