@@ -1,0 +1,38 @@
+pipeline{
+    agent any
+    tools {
+      maven "maven3.6.0"
+    }
+    stages {
+    stage('1cloneCode'){
+        steps{
+            sh "echo 'cloning the latest application version'"
+             git branch: 'feature', url: 'https://github.com/zaddyzero/maven-web-application'
+        }
+    }
+    stage ('2Test+Bulid'){
+        steps{
+            sh "echo 'running JUmit-test-cases'"
+            sh "echo 'testing must passed to create artifacts'"
+            sh "mvn clean package"
+        }
+    }
+    stage ('3CodeQuality'){
+        steps{
+            sh "echo 'running Code Analysis'"
+            sh "mvn sonar:sonar"
+        }
+    }
+    stage ('4uploadNexus'){
+        steps{
+            sh "echo 'deploying artifacts'"
+            sh "mvn deploy"
+        }
+    }
+    stage ('7deploy2prod'){
+        steps{
+            deploy adapters: [tomcat9(credentialsId: '54266038-6271-47c7-92d0-3c8b74739604', path: '', url: 'http://3.94.106.203:8080')], contextPath: null, war: 'target/*war'    
+        }
+    }
+    }
+}
